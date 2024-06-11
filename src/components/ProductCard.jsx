@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const productCard = (props) => {
     return(
       <div className='card'>
