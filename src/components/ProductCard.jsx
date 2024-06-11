@@ -1,6 +1,16 @@
 import React from 'react'
+import { useState } from 'react';
 
-const productCard = (props) => {
+const productCard =  (props)=> {
+  const [jumlahProduct, setJumlahProduct] = useState(0);
+  const tambahProduct = () => {
+    setJumlahProduct(jumlahProduct + 1)
+  }
+  const kurangProduct = () => {
+    setJumlahProduct(jumlahProduct - 1)
+  }
+
+
     return(
       <div className='card'>
         <img style= {{
@@ -13,6 +23,19 @@ const productCard = (props) => {
         <div className="container">
           <h4>{props.nama}</h4>
           <p>{props.deskripsi}</p>
+        </div>
+        <div className={`card-keranjang ${jumlahProduct > 0 ? "jumlah-product" : "show-keranjang"}`}>
+          {
+            jumlahProduct > 0 ? (
+              <>
+              <button className='button' onClick={tambahProduct}>+</button>
+              <div>{jumlahProduct}</div>
+              <button className='button' onClick={kurangProduct}>-</button>
+              </>
+            ):(
+              <div className='keranjang' onClick={tambahProduct}>+Keranjang</div>
+            )
+          }
         </div>
       </div>
     )

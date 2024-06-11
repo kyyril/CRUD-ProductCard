@@ -1,19 +1,12 @@
 import './App.css';
-import ProductCard from './components/ProductCard.jsx';
-import { Products } from './data/products';
-
+import ProductList from './components/ProductList';
 
 function App() {
   return (
-    <div className='cards'>
-      {Products.map(product => {
-        return <ProductCard key={product.id}
-        nama = {product.nama}
-        deskripsi = {product.deskripsi}
-        imageURL = {product.imageURL} 
-        />
-      })}
-    </div>
+    <>
+    <div className='app-title'>Car Store</div>
+    <ProductList />
+    </>
   )
 }
 
