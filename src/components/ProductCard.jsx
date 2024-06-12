@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 
-const productCard =  (props)=> {
+const productCard = (props) => {
   const [jumlahProduct, setJumlahProduct] = useState(0);
   const tambahProduct = () => {
     setJumlahProduct(jumlahProduct + 1)
@@ -9,7 +9,6 @@ const productCard =  (props)=> {
   const kurangProduct = () => {
     setJumlahProduct(jumlahProduct - 1)
   }
-
 
     return(
       <div className='card'>
@@ -32,7 +31,8 @@ const productCard =  (props)=> {
               <div>{jumlahProduct}</div>
               <button className='button' onClick={kurangProduct}>-</button>
               </>
-            ):(
+            ):
+            (
               <div className='keranjang' onClick={tambahProduct}>+Keranjang</div>
             )
           }
