@@ -1,8 +1,12 @@
 import React from 'react'
 import { useState } from 'react';
+import { TiDelete } from "react-icons/ti";
+import { CiEdit } from "react-icons/ci";
 
-const productCard = (props) => {
+const productCard = ({product, onDeleteProducts}) => {
+  const {id,nama,deskripsi,imageURL} = product;
   const [jumlahProduct, setJumlahProduct] = useState(0);
+
   const tambahProduct = () => {
     setJumlahProduct(jumlahProduct + 1)
   }
@@ -10,18 +14,25 @@ const productCard = (props) => {
     setJumlahProduct(jumlahProduct - 1)
   }
 
+  const handleDelete = () => {
+    onDeleteProducts(id)
+  }
     return(
       <div className='card'>
+        <div className='edit-delete'>
+          <CiEdit className='icon-edit'/>
+          <TiDelete onClick = {handleDelete} className='icon-delete'/>
+        </div>
         <img style= {{
         width:"100%",
         height:"200px",
         borderRadius:"10px 10px 0px 0px"}}
-        src={props.imageURL}
+        src={imageURL}
         alt='mobil'>
         </img>
         <div className="container">
-          <h4>{props.nama}</h4>
-          <p>{props.deskripsi}</p>
+          <h4>{nama}</h4>
+          <p>{deskripsi}</p>
         </div>
         <div className={`card-keranjang ${jumlahProduct > 0 ? "jumlah-product" : "show-keranjang"}`}>
           {
