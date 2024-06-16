@@ -1,4 +1,5 @@
 import './App.css';
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import ProductList from './components/ProductList';
 import { dataProducts } from './data/dataProducts';
@@ -7,6 +8,16 @@ import ProductCreate from './components/productCreate';
 
 function App() {
   const [products,setProducts] = useState(dataProducts);
+  
+  const onEditProduct = (id,data) => {
+    const updatedProduct = products.map((prod) => {
+      if (prod.id === id){
+        return {...prod, ...data};
+      }
+      return prod;
+    })
+    setProducts(updatedProduct);
+  };
   
   const onCreateProducts = (product) => {
     setProducts([
@@ -32,7 +43,7 @@ function App() {
     <div className='app-title'>Car Store</div>
     <ProductCreate ProductCreate={onCreateProducts}/>
     <ProductList productsList={products} 
-    onDeleteProducts = {onDeleteProducts}/>
+    onDeleteProducts = {onDeleteProducts} onEditProduct={onEditProduct}/>
     </>
   )
 }

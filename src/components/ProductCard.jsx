@@ -2,10 +2,13 @@ import React from 'react'
 import { useState } from 'react';
 import { TiDelete } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
+import ProductEdit from './ProductEdit';
 
-const productCard = ({product, onDeleteProducts}) => {
+const productCard = ({product, onDeleteProducts,onEditProduct}) => {
+  //destructing
   const {id,nama,deskripsi,imageURL} = product;
   const [jumlahProduct, setJumlahProduct] = useState(0);
+  const [showEdit,setShowEdit] = useState(false)
 
   const tambahProduct = () => {
     setJumlahProduct(jumlahProduct + 1)
@@ -17,10 +20,23 @@ const productCard = ({product, onDeleteProducts}) => {
   const handleDelete = () => {
     onDeleteProducts(id)
   }
+  const handleShow = () => {
+    setShowEdit(!showEdit)
+  }
+  const onSubmitEdit = (id,data) => {//onSubmit berisi data onEdit
+    setShowEdit(!showEdit)
+    onEditProduct(id,data)
+  }
+  const onCancelEdit = () => {
+    setShowEdit(!showEdit)//tanpa mengubah data
+  }
+  
+
     return(
       <div className='card'>
+        {showEdit ? <ProductEdit product={product} onEditProduct = {onSubmitEdit} onCancelEdit={onCancelEdit}/>:(<>
         <div className='edit-delete'>
-          <CiEdit className='icon-edit'/>
+          <CiEdit onClick={handleShow} className='icon-edit'/>
           <TiDelete onClick = {handleDelete} className='icon-delete'/>
         </div>
         <img style= {{
@@ -48,6 +64,8 @@ const productCard = ({product, onDeleteProducts}) => {
             )
           }
         </div>
+        </>
+        )}
       </div>
     )
   }
