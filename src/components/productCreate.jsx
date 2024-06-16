@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React,{useState} from 'react'
 
 const productCreate = ({ProductCreate}) => {
@@ -6,6 +7,7 @@ const productCreate = ({ProductCreate}) => {
         deskripsi: '',
         imageURL: ''
     };
+
     const [showForm, setShowForm] = useState(false)
     const [formData, setFormData] = useState(initialState)
 
